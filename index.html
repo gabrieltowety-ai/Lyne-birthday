@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Happy Birthday Lyne Hadassa 🎂</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #fff5f8, #f5f0ff, #eefaff);
+            color: #333;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page.active {
+            display: flex;
+            animation: fadeIn 0.7s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating decorations */
+
+        .floating {
+            position: absolute;
+            font-size: 25px;
+            opacity: 0.55;
+            animation: float 5s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .f1 { top: 10%; left: 8%; animation-delay: 0s; }
+        .f2 { top: 20%; right: 10%; animation-delay: 1s; }
+        .f3 { bottom: 15%; left: 13%; animation-delay: 2s; }
+        .f4 { bottom: 10%; right: 12%; animation-delay: 3s; }
+        .f5 { top: 50%; left: 4%; animation-delay: 1.5s; }
+
+        @keyframes float {
+            0%,100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-18px) rotate(8deg);
+            }
+        }
+
+        /* Cards */
+
+        .card {
+            width: min(470px, 100%);
+            background: rgba(255,255,255,0.88);
+            backdrop-filter: blur(15px);
+            border-radius: 28px;
+            padding: 38px 28px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(90,70,100,0.15);
+            position: relative;
+            z-index: 2;
+        }
+
+        .emoji {
+            font-size: 58px;
+            margin-bottom: 15px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(34px, 8vw, 52px);
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .pink {
+            color: #e84f83;
+        }
+
+        .subtitle {
+            color: #777;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        button {
+            border: none;
+            padding: 14px 27px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #e84f83, #b957c8);
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(200,70,130,0.25);
+            transition: 0.25s;
+        }
+
+        button:hover {
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        /* Birthday screen */
+
+        .cake {
+            font-size: 85px;
+            animation: cakeFloat 2.5s ease-in-out infinite;
+        }
+
+        @keyframes cakeFloat {
+            0%,100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        .name {
+            background: linear-gradient(90deg, #e84f83, #9a55c7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Gallery */
+
+        .gallery-card {
+            width: min(800px, 100%);
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 13px;
+            margin: 25px 0;
+        }
+
+        .photo {
+            aspect-ratio: 1 / 1.15;
+            overflow: hidden;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            background: #eee;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.4s;
+        }
+
+        .photo:hover img {
+            transform: scale(1.07);
+        }
+
+        /* Favorite things */
+
+        .favorites {
+            display: grid;
+            gap: 13px;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .favorite {
+            background: rgba(255,255,255,0.8);
+            padding: 17px;
+            border-radius: 17px;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.05);
+        }
+
+        .favorite-icon {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fff0f5;
+            font-size: 21px;
+        }
+
+        .favorite p {
+            color: #555;
+            line-height: 1.45;
+            font-size: 14px;
+        }
+
+        /* Counter */
+
+        .counter {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 25px 0;
+        }
+
+        .counter-box {
+            background: #fff;
+            padding: 17px 8px;
+            border-radius: 16px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.06);
+        }
+
+        .counter-box strong {
+            display: block;
+            font-size: 25px;
+            color: #df4c82;
+        }
+
+        .counter-box span {
+            font-size: 11px;
+            color: #888;
+        }
+
+        /* Heart */
+
+        .heart-area {
+            padding: 25px 0;
+        }
+
+        .heart {
+            font-size: 95px;
+            cursor: pointer;
+            display: inline-block;
+            animation: heartbeat 1.2s infinite;
+            user-select: none;
+            filter: drop-shadow(0 10px 15px rgba(230,70,120,0.25));
+        }
+
+        @keyframes heartbeat {
+            0%,100% {
+                transform: scale(1);
+            }
+            15% {
+                transform: scale(1.15);
+            }
+            30% {
+                transform: scale(1);
+            }
+            45% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Letter */
+
+        .letter {
+            text-align: left;
+            background: #fffafc;
+            padding: 25px;
+            border-radius: 20px;
+            margin-top: 20px;
+            line-height: 1.8;
+            color: #555;
+            box-shadow: inset 0 0 0 1px #f5dce6;
+        }
+
+        .letter strong {
+            color: #e24e7f;
+        }
+
+        /* Confetti */
+
+        .confetti {
+            position: fixed;
+            width: 8px;
+            height: 14px;
+            top: -20px;
+            z-index: 999;
+            pointer-events: none;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(720deg);
+            }
+        }
+
+        .small {
+            font-size: 13px;
+            color: #999;
+            margin-top: 18px;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 600px) {
+            .page {
+                padding: 16px;
+            }
+
+            .card {
+                padding: 30px 20px;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-card {
+                padding: 10px;
+            }
+
+            .counter {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .counter-box strong {
+                font-size: 21px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Floating decorations -->
+    <div class="floating f1">💗</div>
+    <div class="floating f2">✨</div>
+    <div class="floating f3">🌸</div>
+    <div class="floating f4">💫</div>
+    <div class="floating f5">🎀</div>
+
+
+    <!-- PAGE 1 -->
+
+    <section class="page active" id="page1">
+
+        <div class="card">
+
+            <div class="emoji">🎁</div>
+
+            <h2>Special Surprise</h2>
+
+            <p class="subtitle">
+                I made something small for someone who's genuinely
+                one of the best people to have around.
+            </p>
+
+            <button onclick="nextPage()">
+                Open Your Surprise 💗
+            </button>
+
+            <p class="small">
+                For Lyne Hadassa ✨
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PAGE 2 -->
+
+    <section class="page" id="page2">
+
+        <div class="card">
+
+            <div class="cake">🎂</div>
+
+            <h1>
+                Happy Birthday<br>
+                <span class="name">Lyne Hadassa!</span>
+            </h1>
+
+            <p class="subtitle">
+                Today is officially your day 🎉
+                So this little corner of the internet is dedicated
+                entirely to you.
+            </p>
+
+            <button onclick="nextPage(); confetti()">
+                Make a Wish ✨
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- PAGE 3: PHOTOS -->
+
+    <section class="page" id="page3">
+
+        <div class="gallery-card">
+
+            <h2>
+                A Little <span class="pink">Lyne</span> Gallery 📸
+            </h2>
+
+            <p class="subtitle">
+                Because apparently one picture wasn't enough.
+            </p>
+
+            <div class="gallery">
+
+                <!-- Replace these with Lyne's photos -->
+
+                <div class="photo">
+                    <img src="images/lyne1.jpg" alt="Lyne">
+                </div>
+
+                <div class="photo">
+                    <img src="images/lyne2.jpg" alt="Lyne">
+                </div>
+
+                <div class="photo">
+                    <img src="images/lyne3.jpg" alt="Lyne">
+                </div>
+
+                <div class="photo">
+                    <img src="images/lyne4.jpg" alt="Lyne">
+                </div>
+
+                <div class="photo">
+                    <img src="images/lyne5.jpg" alt="Lyne">
+                </div>
+
+                <div class="photo">
+                    <img src="images/lyne6.jpg" alt="Lyne">
+                </div>
+
+            </div>
+
+            <button onclick="nextPage()">
+                There's More 👀
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- PAGE 4: FAVORITES -->
+
+    <section class="page" id="page4">
+
+        <div class="card">
+
+            <h2>
+                My Favorite Things<br>
+                <span class="pink">About You 💗</span>
+            </h2>
+
+            <p class="subtitle">
+                Since we're here, might as well give you your flowers.
+            </p>
+
+            <div class="favorites">
+
+                <div class="favorite">
+                    <div class="favorite-icon">😂</div>
+                    <p>
+                        <strong>Your sense of humor.</strong><br>
+                        You somehow manage to make ordinary moments
+                        way more fun.
+                    </p>
+                </div>
+
+                <div class="favorite">
+                    <div class="favorite-icon">💛</div>
+                    <p>
+                        <strong>How genuine you are.</strong><br>
+                        You're someone who can actually be yourself
+                        without trying too hard.
+                    </p>
+                </div>
+
+                <div class="favorite">
+                    <div class="favorite-icon">🌷</div>
+                    <p>
+                        <strong>Your kindness.</strong><br>
+                        You have a way of making people feel comfortable
+                        and appreciated.
+                    </p>
+                </div>
+
+                <div class="favorite">
+                    <div class="favorite-icon">✨</div>
+                    <p>
+                        <strong>Your energy.</strong><br>
+                        Somehow you can turn a boring day into
+                        something worth remembering.
+                    </p>
+                </div>
+
+                <div class="favorite">
+                    <div class="favorite-icon">🫶</div>
+                    <p>
+                        <strong>The way you care about people.</strong><br>
+                        Even the little things you do can mean a lot.
+                    </p>
+                </div>
+
+                <div class="favorite">
+                    <div class="favorite-icon">👑</div>
+                    <p>
+                        <strong>You being unapologetically you.</strong><br>
+                        Never lose that part of yourself.
+                    </p>
+                </div>
+
+            </div>
+
+            <button onclick="nextPage()">
+                One More Thing 💌
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- PAGE 5: COUNTER -->
+
+    <section class="page" id="page5">
+
+        <div class="card">
+
+            <div class="emoji">⏳</div>
+
+            <h2>
+                Another Year of <span class="pink">You</span>
+            </h2>
+
+            <p class="subtitle">
+                And somehow you've managed to become
+                even more awesome.
+            </p>
+
+            <div class="counter">
+
+                <div class="counter-box">
+                    <strong id="days">0</strong>
+                    <span>DAYS</span>
+                </div>
+
+                <div class="counter-box">
+                    <strong id="hours">0</strong>
+                    <span>HOURS</span>
+                </div>
+
+                <div class="counter-box">
+                    <strong id="minutes">0</strong>
+                    <span>MINUTES</span>
+                </div>
+
+            </div>
+
+            <p class="subtitle">
+                Here's to another chapter filled with
+                good memories, laughter, and big wins. 🥂
+            </p>
+
+            <button onclick="nextPage()">
+                Tap the Heart ❤️
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- PAGE 6: HEART -->
+
+    <section class="page" id="page6">
+
+        <div class="card">
+
+            <h2>
+                I Have Something<br>
+                <span class="pink">To Tell You...</span>
+            </h2>
+
+            <div class="heart-area">
+
+                <div class="heart" onclick="openLetter()">
+                    ❤️
+                </div>
+
+                <p class="small">
+                    Tap the heart
+                </p>
+
+            </div>
+
+            <div id="letter" style="display:none;">
+
+                <div class="letter">
+
+                    <p>
+                        Hey <strong>Lyne</strong> 🫶
+                    </p>
+
+                    <br>
+
+                    <p>
+                        Happy Birthday! 🎂
+                    </p>
+
+                    <br>
+
+                    <p>
+                        I just wanted to make sure you knew that
+                        you're genuinely appreciated. You're a great
+                        person to have around, and the memories,
+                        laughs and random moments definitely make
+                        life more interesting.
+                    </p>
+
+                    <br>
+
+                    <p>
+                        I hope this next year brings you plenty of
+                        reasons to smile, amazing memories, and
+                        everything you've been hoping for.
+                    </p>
+
+                    <br>
+
+                    <p>
+                        Keep being the person you are, keep laughing,
+                        keep growing, and don't let anybody convince
+                        you that you aren't enough.
+                    </p>
+
+                    <br>
+
+                    <p>
+                        Have an amazing birthday, <strong>Lyne Hadassa</strong> 💗
+                    </p>
+
+                    <br>
+
+                    <p>
+                        From your homeboy 🤝
+                    </p>
+
+                </div>
+
+                <br>
+
+                <button onclick="confetti()">
+                    🎉 Celebrate!
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <script>
+
+        let currentPage = 1;
+
+        function showPage(number) {
+
+            document.querySelectorAll(".page").forEach(page => {
+                page.classList.remove("active");
+            });
+
+            document.getElementById("page" + number)
+                .classList.add("active");
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+        function nextPage() {
+
+            if (currentPage < 6) {
+                currentPage++;
+                showPage(currentPage);
+            }
+
+        }
+
+
+        /* Letter */
+
+        function openLetter() {
+
+            const letter = document.getElementById("letter");
+
+            if (letter.style.display === "none") {
+
+                letter.style.display = "block";
+
+                confetti();
+
+                setTimeout(() => {
+                    letter.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+                }, 100);
+
+            }
+
+        }
+
+
+        /* Confetti */
+
+        function confetti() {
+
+            const symbols = ["💗", "💖", "✨", "🎉", "🌸", "💫"];
+
+            for (let i = 0; i < 70; i++) {
+
+                const piece = document.createElement("div");
+
+                piece.className = "confetti";
+
+                piece.innerText =
+                    symbols[Math.floor(Math.random() * symbols.length)];
+
+                piece.style.left =
+                    Math.random() * 100 + "vw";
+
+                piece.style.fontSize =
+                    (Math.random() * 12 + 10) + "px";
+
+                piece.style.animationDuration =
+                    (Math.random() * 3 + 2) + "s";
+
+                piece.style.animationDelay =
+                    Math.random() * 0.7 + "s";
+
+                document.body.appendChild(piece);
+
+                setTimeout(() => {
+                    piece.remove();
+                }, 6000);
+
+            }
+
+        }
+
+
+        /* Birthday counter */
+
+        /*
+           Change this date to Lyne's birthday.
+
+           Example:
+           new Date("2026-08-24T00:00:00")
+        */
+
+        const birthday = new Date("2026-08-24T00:00:00");
+
+        function updateCounter() {
+
+            const now = new Date();
+
+            let difference = now - birthday;
+
+            if (difference < 0) {
+                difference = 0;
+            }
+
+            const days =
+                Math.floor(difference / (1000 * 60 * 60 * 24));
+
+            const hours =
+                Math.floor(
+                    (difference / (1000 * 60 * 60)) % 24
+                );
+
+            const minutes =
+                Math.floor(
+                    (difference / (1000 * 60)) % 60
+                );
+
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes;
+
+        }
+
+        updateCounter();
+
+        setInterval(updateCounter, 1000);
+
+    </script>
+
+</body>
+  </html>
